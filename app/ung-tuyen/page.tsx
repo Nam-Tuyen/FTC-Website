@@ -46,7 +46,7 @@ const eventsInterested = [
 
 const skillsMulti = [
   "viết email",
-  "dẫn chương trình/MC",
+  "d���n chương trình/MC",
   "dự trù kinh phí",
   "sáng tạo nội dung",
   "viết bài",
@@ -240,7 +240,7 @@ export default function ApplicationPage() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="dob">Ngày sinh (dd/mm/yyyy) *</Label>
-                    <Input id="dob" type="date" value={form.dob} onChange={(e) => update("dob", e.target.value)} />
+                    <Input id="dob" type="date" value={form.dob} onChange={(e) => update("dob", e.target.value)} onFocus={(e) => { try { (e.currentTarget as HTMLInputElement).showPicker?.() } catch {} }} onClick={(e) => { try { (e.currentTarget as HTMLInputElement).showPicker?.() } catch {} }} />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -279,11 +279,11 @@ export default function ApplicationPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="profileUrl">Link Facebook/LinkedIn</Label>
-                    <Input id="profileUrl" type="url" value={form.profileUrl} onChange={(e) => update("profileUrl", e.target.value)} placeholder="https://facebook.com/... hoặc https://linkedin.com/in/..." />
+                    <Input id="profileUrl" type="url" value={form.profileUrl} onChange={(e) => update("profileUrl", e.target.value)} placeholder="https://facebook.com/... hoặc LinkedIn" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="currentResidence">Nơi ở hiện tại</Label>
-                    <Input id="currentResidence" value={form.currentResidence} onChange={(e) => update("currentResidence", e.target.value)} placeholder="Quận/TP" />
+                    <Input id="currentResidence" value={form.currentResidence} onChange={(e) => update("currentResidence", e.target.value)} placeholder="Địa chỉ thường trú" />
                   </div>
                 </div>
                 <div className="space-y-2">
