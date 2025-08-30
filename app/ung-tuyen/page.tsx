@@ -28,7 +28,7 @@ const commuteOptions = [
 ]
 
 const interestAreas = [
-  "Fintech cơ bản",
+  "\"Fintech\" nói chung",
   "Giao dịch thuật toán",
   "Dữ liệu & AI trong tài chính",
   "Blockchain/Web3",
@@ -299,7 +299,7 @@ export default function ApplicationPage() {
                 </div>
               </section>
 
-              {/* 2) Vì sao bạn chọn FTC? */}
+              {/* 2) Vì sao bạn ch���n FTC? */}
               <section className="space-y-6">
                 <h2 className="text-xl font-semibold">2) Vì sao bạn chọn FTC?</h2>
                 <div className="space-y-2">
@@ -307,7 +307,7 @@ export default function ApplicationPage() {
                   <Textarea id="whyFtc" rows={5} value={form.whyFtc} onChange={(e) => update("whyFtc", e.target.value)} placeholder="Chia sẻ kỳ vọng và lý do của bạn..." />
                 </div>
                 <div className="space-y-2">
-                  <Label>Bạn hứng thú mảng nào? (chọn nhiều)</Label>
+                  <Label>Bạn hứng thú mảng nào? (có thể chọn nhiều đáp án)</Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {interestAreas.map((area) => (
                       <label key={area} className="flex items-center gap-2 cursor-pointer">
@@ -318,7 +318,7 @@ export default function ApplicationPage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label>Sự kiện bạn muốn tham gia tổ chức (chọn nhiều)</Label>
+                  <Label>Sự kiện bạn muốn tham gia tổ chức (có thể chọn nhiều đáp án)</Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {eventsInterested.map((ev) => (
                       <label key={ev} className="flex items-center gap-2 cursor-pointer">
@@ -338,7 +338,7 @@ export default function ApplicationPage() {
                   <Textarea id="strengths" rows={5} value={form.strengths} onChange={(e) => update("strengths", e.target.value)} placeholder="Chia sẻ thật lòng nhé!" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Bạn làm tốt những việc nào? (chọn nhiều)</Label>
+                  <Label>Bạn làm tốt những việc nào? (có thể chọn nhiều đáp án)</Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {skillsMulti.map((s) => (
                       <label key={s} className="flex items-center gap-2 cursor-pointer">
@@ -349,7 +349,7 @@ export default function ApplicationPage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label>Bạn đã dùng công cụ nào? (chọn nhiều)</Label>
+                  <Label>Bạn đã dùng công cụ nào? (có thể chọn nhiều đáp án)</Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {toolsUsed.map((t) => (
                       <label key={t} className="flex items-center gap-2 cursor-pointer">
