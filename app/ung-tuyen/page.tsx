@@ -332,24 +332,28 @@ export default function ApplicationPage() {
                         </div>
                       </Popover.Content>
                       <style jsx global>{`
-                        /* Force white for all SVG/icons in caption dropdowns and nav */
-                        .rdp-root .rdp-caption_dropdowns svg,
-                        .rdp-root .rdp-caption_dropdowns svg *,
-                        .rdp-root .rdp-nav button svg,
-                        .rdp-root .rdp-nav button svg * {
+                        /* Force white globally inside DayPicker root */
+                        .rdp-root,
+                        .rdp-root * {
+                          color: #fff !important;
+                        }
+                        .rdp-root svg,
+                        .rdp-root svg * {
                           fill: #fff !important;
                           stroke: #fff !important;
                         }
-                        /* Text color across caption, headers, days, and nav */
-                        .rdp-root .rdp-caption_dropdowns select,
+                        /* Specific elements for safety */
+                        .rdp-root .rdp-caption,
                         .rdp-root .rdp-caption_label,
+                        .rdp-root .rdp-caption_dropdowns,
                         .rdp-root .rdp-head_cell,
                         .rdp-root .rdp-day,
                         .rdp-root .rdp-day_button,
-                        .rdp-root .rdp-nav {
+                        .rdp-root .rdp-nav,
+                        .rdp-root .rdp-nav button,
+                        .rdp-root .rdp-nav button svg {
                           color: #fff !important;
                         }
-                        /* Dropdown options and caret color */
                         .rdp-root .rdp-caption_dropdowns select,
                         .rdp-root .rdp-caption_dropdowns option {
                           color: #fff !important;
@@ -503,7 +507,7 @@ export default function ApplicationPage() {
                 <div className="space-y-2">
                   <Label>Theo bạn, điều gì quyết định làm việc nhóm hiệu quả?</Label>
                   <RadioGroup value={form.teamworkKey} onValueChange={(v) => update("teamworkKey", v)} className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    {["Kỷ luật","Giao ti��p","Cam kết","Tôn trọng","Trách nhiệm","Tập trung kết quả"].map((k) => (
+                    {["Kỷ luật","Giao tiếp","Cam kết","Tôn trọng","Trách nhiệm","Tập trung kết quả"].map((k) => (
                       <label key={k} className="flex items-center gap-2 cursor-pointer">
                         <RadioGroupItem id={`tw-${k}`} value={k} />
                         <span className="text-sm">{k}</span>
