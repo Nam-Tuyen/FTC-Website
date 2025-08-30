@@ -127,7 +127,7 @@ type FormState = {
   tools: string[]
   portfolioUrl: string
 
-  // 4) Trải nghiệm hoạt động
+  // 4) Trải nghiệm ho��t động
   clubExperience: string
   extroversion: string
   teamworkKey: string
@@ -517,7 +517,7 @@ export default function ApplicationPage() {
                 </div>
               </section>
 
-              {/* 5) Bạn muốn vào ban nào? */}
+              {/* 5) Bạn mu��n vào ban nào? */}
               <section className="space-y-6">
                 <h2 className="text-xl font-semibold">5) Bạn muốn vào ban nào?</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -560,7 +560,7 @@ export default function ApplicationPage() {
                       <Textarea id="hocThuat_topics" rows={4} value={form.hocThuat_topics} onChange={(e) => update("hocThuat_topics", e.target.value)} />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="hocThuat_training">Ph��c thảo 1 buổi training (mục tiêu → nội dung chính → “đem về” cho người học)</Label>
+                      <Label htmlFor="hocThuat_training"><p>Phác thảo 1 buổi training (mục tiêu → nội dung chính → “đem về” cho người học)</p></Label>
                       <Textarea id="hocThuat_training" rows={5} value={form.hocThuat_training} onChange={(e) => update("hocThuat_training", e.target.value)} />
                     </div>
                   </div>
@@ -598,7 +598,7 @@ export default function ApplicationPage() {
                 {form.primaryTeam === "nhan-su" && (
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="nhanSu_conflict">Bạn sẽ xử lý thế nào khi đội 6–8 người có xung đột?</Label>
+                      <Label htmlFor="nhanSu_conflict">Bạn sẽ xử lý thế nào khi đội 6–8 ngư���i có xung đột?</Label>
                       <Textarea id="nhanSu_conflict" rows={5} value={form.nhanSu_conflict} onChange={(e) => update("nhanSu_conflict", e.target.value)} />
                     </div>
                     <div className="space-y-2">
@@ -638,7 +638,7 @@ export default function ApplicationPage() {
               <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="h-6 w-6 text-accent" />
               </div>
-              <h3 className="font-heading font-semibold text-lg mb-2">Cơ h���i phát triển</h3>
+              <h3 className="font-heading font-semibold text-lg mb-2">Cơ hội phát triển</h3>
               <p className="text-muted-foreground text-sm">Workshop, talkshow, mentoring từ anh chị đi trước</p>
             </CardContent>
           </Card>
