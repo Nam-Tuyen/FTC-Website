@@ -331,6 +331,22 @@ export default function ApplicationPage() {
                           />
                         </div>
                       </Popover.Content>
+                      <style jsx global>{`
+                        .rdp-root .rdp-caption_dropdowns svg,
+                        .rdp-root .rdp-caption_dropdowns polygon,
+                        .rdp-root .rdp-nav button svg,
+                        .rdp-root .rdp-nav button polygon {
+                          fill: #fff !important;
+                          stroke: #fff !important;
+                        }
+                        .rdp-root .rdp-caption_dropdowns select,
+                        .rdp-root .rdp-caption_label,
+                        .rdp-root .rdp-head_cell,
+                        .rdp-root .rdp-day,
+                        .rdp-root .rdp-nav {
+                          color: #fff !important;
+                        }
+                      `}</style>
                     </Popover.Root>
                   </div>
                 </div>
@@ -534,7 +550,7 @@ export default function ApplicationPage() {
                       <Textarea id="hocThuat_topics" rows={4} value={form.hocThuat_topics} onChange={(e) => update("hocThuat_topics", e.target.value)} />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="hocThuat_training">Phác thảo 1 buổi training (mục tiêu → nội dung chính → “đem về” cho người học)</Label>
+                      <Label htmlFor="hocThuat_training">Ph��c thảo 1 buổi training (mục tiêu → nội dung chính → “đem về” cho người học)</Label>
                       <Textarea id="hocThuat_training" rows={5} value={form.hocThuat_training} onChange={(e) => update("hocThuat_training", e.target.value)} />
                     </div>
                   </div>
