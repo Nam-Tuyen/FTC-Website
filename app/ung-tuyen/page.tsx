@@ -205,6 +205,7 @@ export default function ApplicationPage() {
       arr.has(value) ? arr.delete(value) : arr.add(value)
       return { ...p, [key]: Array.from(arr) }
     })
+  const [submitting, setSubmitting] = useState(false)
 
   const requiredValid = useMemo(() => {
     const emailOk = /@.+\.uel\.edu\.vn$/i.test(form.schoolEmail.trim())
@@ -230,14 +231,39 @@ export default function ApplicationPage() {
     setCalMonth((m) => addMonths(m, step))
   }
 
-  const onSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!requiredValid) {
       alert("Vui lòng điền đầy đủ các trường bắt buộc (*) và kiểm tra email trường (@…uel.edu.vn)")
       return
     }
-    console.log("FTC Application Submitted", form)
-    alert("Đã gửi! Tụi mình sẽ liên hệ lịch phỏng vấn sớm nhé 💚")
+    try {
+      setSubmitting(true)
+      console.log("Form submitted:", form)
+      const BASE = "https://script.google.com/macros/s/AKfycbyFci6Q6595TQuYe6LcWYpqTpR0E2vXTjSiXrguWzyTskpJi4L7-Cfbs16shvMmXIUCug/exec"
+      const response = await fetch(BASE, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      })
+      console.log("Response status:", response.status)
+      console.log("Response headers:", Object.fromEntries(response.headers.entries()))
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      const result = await response.json()
+      console.log("Result:", result)
+      if (result.ok) {
+        alert("Đơn ứng tuyển đã được gửi thành công! Chúng tôi sẽ liên hệ với bạn sớm.")
+      } else {
+        throw new Error(result.error || "Unknown error occurred")
+      }
+    } catch (error) {
+      console.error("Submit error:", error)
+      alert("Có lỗi xảy ra khi gửi form. Vui lòng thử lại.")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -258,10 +284,10 @@ export default function ApplicationPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Card>
           <CardHeader>
-            <CardTitle className="text-3xl text-center font-heading">Mẫu đơn ứng tuyển</CardTitle>
+            <CardTitle className="text-3xl text-center font-heading">M���u đơn ứng tuyển</CardTitle>
           </CardHeader>
           <CardContent>
-            <form onSubmit={onSubmit} className="space-y-10">
+            <form onSubmit={handleSubmit} className="space-y-10">
               {/* 1) Thông tin cơ bản */}
               <section className="space-y-6">
                 <h2 className="text-xl font-semibold">1) Thông tin cơ bản</h2>
@@ -618,7 +644,7 @@ export default function ApplicationPage() {
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Lên đầu trang
                 </Button>
-                <Button type="submit" disabled={!requiredValid} className="bg-primary hover:bg-primary/90">
+                <Button type="submit" disabled={!requiredValid || submitting} className="bg-primary hover:bg-primary/90">
                   Gửi đơn
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
