@@ -11,6 +11,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { CheckCircle, ArrowRight, ArrowLeft } from "lucide-react"
+import * as Popover from "@radix-ui/react-popover"
+import { DayPicker } from "react-day-picker"
+import { addMonths } from "date-fns"
+import "react-day-picker/dist/style.css"
 
 const genderOptions = [
   { value: "male", label: "Nam" },
@@ -79,6 +83,25 @@ const teams = [
   { value: "tai-chinh-ca-nhan", label: "Tài chính cá nhân" },
   { value: "nhan-su", label: "Nhân sự" },
 ]
+
+function parseISODate(iso: string): Date | null {
+  if (!iso) return null
+  const parts = iso.split("-").map(Number)
+  if (parts.length !== 3) return null
+  const [y, m, d] = parts
+  if (!y || !m || !d) return null
+  const dt = new Date(y, m - 1, d)
+  return isNaN(dt.getTime()) ? null : dt
+}
+
+function formatDisplayFromISO(iso: string): string {
+  const d = parseISODate(iso)
+  if (!d) return ""
+  const dd = String(d.getDate()).padStart(2, "0")
+  const mm = String(d.getMonth() + 1).padStart(2, "0")
+  const yyyy = String(d.getFullYear())
+  return `${dd}/${mm}/${yyyy}`
+}
 
 type FormState = {
   // 1) Thông tin cơ bản
@@ -198,6 +221,15 @@ export default function ApplicationPage() {
     )
   }, [form])
 
+  const selectedDob = useMemo(() => parseISODate(form.dob), [form.dob])
+  const [openDOB, setOpenDOB] = useState(false)
+  const [calMonth, setCalMonth] = useState<Date>(selectedDob || new Date())
+  const onCalendarWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault()
+    const step = e.deltaY > 0 ? 3 : -3
+    setCalMonth((m) => addMonths(m, step))
+  }
+
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!requiredValid) {
@@ -240,7 +272,40 @@ export default function ApplicationPage() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="dob">Ngày sinh (dd/mm/yyyy) *</Label>
-                    <Input id="dob" type="date" value={form.dob} onChange={(e) => update("dob", e.target.value)} onFocus={(e) => { try { (e.currentTarget as HTMLInputElement).showPicker?.() } catch {} }} onClick={(e) => { try { (e.currentTarget as HTMLInputElement).showPicker?.() } catch {} }} />
+                    <Popover.Root open={openDOB} onOpenChange={(v) => { setOpenDOB(v); if (v && selectedDob) setCalMonth(selectedDob) }}>
+                      <Popover.Trigger asChild>
+                        <div>
+                          <Input
+                            id="dob"
+                            value={form.dob ? formatDisplayFromISO(form.dob) : ""}
+                            onClick={() => setOpenDOB(true)}
+                            readOnly
+                            placeholder="dd/mm/yyyy"
+                          />
+                        </div>
+                      </Popover.Trigger>
+                      <Popover.Content className="rounded-md border bg-popover p-2 shadow-md" sideOffset={6} align="start">
+                        <div onWheel={onCalendarWheel} className="select-none">
+                          <DayPicker
+                            mode="single"
+                            month={calMonth}
+                            onMonthChange={setCalMonth}
+                            selected={selectedDob || undefined}
+                            onSelect={(d) => {
+                              if (!d) return
+                              const iso = d.toISOString().slice(0, 10)
+                              update("dob", iso)
+                              setOpenDOB(false)
+                            }}
+                            captionLayout="dropdown"
+                            fromYear={1980}
+                            toYear={new Date().getFullYear()}
+                            numberOfMonths={2}
+                            showOutsideDays
+                          />
+                        </div>
+                      </Popover.Content>
+                    </Popover.Root>
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -521,7 +586,7 @@ export default function ApplicationPage() {
               <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="h-6 w-6 text-accent" />
               </div>
-              <h3 className="font-heading font-semibold text-lg mb-2">Cơ hội phát triển</h3>
+              <h3 className="font-heading font-semibold text-lg mb-2">Cơ h���i phát triển</h3>
               <p className="text-muted-foreground text-sm">Workshop, talkshow, mentoring từ anh chị đi trước</p>
             </CardContent>
           </Card>
