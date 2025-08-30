@@ -45,18 +45,18 @@ const eventsInterested = [
 ]
 
 const skillsMulti = [
-  "viết email",
-  "dẫn chương trình/MC",
-  "dự trù kinh phí",
-  "sáng tạo nội dung",
-  "viết bài",
-  "thiết kế hình ảnh",
-  "quay–chụp",
-  "dựng video",
-  "phân tích dữ liệu (Excel/SQL/Python)",
-  "trực fanpage",
-  "quản lý dự án",
-  "nghiên cứu học thuật",
+  "Viết Email",
+  "Dẫn Chương Trình/MC",
+  "Dự Trù Kinh Phí",
+  "Sáng Tạo Nội Dung",
+  "Viết Bài",
+  "Thiết Kế Hình Ảnh",
+  "Quay–Chụp",
+  "Dựng Video",
+  "Phân Tích Dữ Liệu (Excel/SQL/Python)",
+  "Trực Fanpage",
+  "Quản Lý Dự Án",
+  "Nghiên Cứu Học Thuật",
 ]
 
 const toolsUsed = [
@@ -469,7 +469,7 @@ export default function ApplicationPage() {
                 {form.primaryTeam === "tai-chinh-ca-nhan" && (
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="tccn_topic">Đề xuất chủ đề workshop “quản lý tiền cho sinh viên”</Label>
+                      <Label htmlFor="tccn_topic">Đề xuất chủ đề workshop “quản lý tiền cho sinh vi��n”</Label>
                       <Input id="tccn_topic" value={form.tccn_topic} onChange={(e) => update("tccn_topic", e.target.value)} />
                     </div>
                     <div className="space-y-2">
@@ -513,7 +513,7 @@ export default function ApplicationPage() {
                 <CheckCircle className="h-6 w-6 text-primary" />
               </div>
               <h3 className="font-heading font-semibold text-lg mb-2">Trải nghiệm vui</h3>
-              <p className="text-muted-foreground text-sm">Gắn kết, học hỏi, và làm dự án thực tế cùng team</p>
+              <p className="text-muted-foreground text-sm">Gắn kết, học hỏi, và làm d��� án thực tế cùng team</p>
             </CardContent>
           </Card>
           <Card className="text-center p-6">
