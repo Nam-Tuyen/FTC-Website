@@ -21,7 +21,7 @@ const genderOptions = [
 
 const commuteOptions = [
   { value: "walk", label: "Đi bộ" },
-  { value: "bike", label: "Xe đạp" },
+  { value: "bike", label: "Xe ��ạp" },
   { value: "motorbike", label: "Xe máy" },
   { value: "bus", label: "Xe buýt" },
   { value: "other", label: "Khác" },
@@ -46,7 +46,7 @@ const eventsInterested = [
 
 const skillsMulti = [
   "viết email",
-  "d���n chương trình/MC",
+  "dẫn chương trình/MC",
   "dự trù kinh phí",
   "sáng tạo nội dung",
   "viết bài",
@@ -217,8 +217,8 @@ export default function ApplicationPage() {
           <h1 className="font-heading font-bold text-4xl sm:text-5xl text-foreground mb-6">
             Đơn đăng ký <span className="text-primary">FTC</span>
           </h1>
-          <p className="text-xl text-muted-foreground text-pretty">
-            Thân thiện cho tân sinh viên — Dấu (*) là bắt buộc. Cứ trả lời thoải mái, không cần đúng mẫu đâu nha!
+          <p className="text-xl text-muted-foreground text-pretty italic">
+            Dành cho tân sinh viên. (*) là bắt buộc — cứ trả lời thoải mái nhé!
           </p>
         </div>
       </section>
@@ -349,7 +349,7 @@ export default function ApplicationPage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label>Bạn đã dùng công cụ nào? (chọn nhiều)</Label>
+                  <Label>Bạn đã dùng công c��� nào? (chọn nhiều)</Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {toolsUsed.map((t) => (
                       <label key={t} className="flex items-center gap-2 cursor-pointer">
