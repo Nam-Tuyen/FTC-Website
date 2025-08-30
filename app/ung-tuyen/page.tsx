@@ -226,7 +226,7 @@ export default function ApplicationPage() {
   const [calMonth, setCalMonth] = useState<Date>(selectedDob || new Date())
   const onCalendarWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault()
-    const step = e.deltaY > 0 ? 3 : -3
+    const step = e.deltaY > 0 ? 1 : -1
     setCalMonth((m) => addMonths(m, step))
   }
 
@@ -284,7 +284,7 @@ export default function ApplicationPage() {
                           />
                         </div>
                       </Popover.Trigger>
-                      <Popover.Content className="rounded-md border bg-popover p-2 shadow-md" sideOffset={6} align="start">
+                      <Popover.Content className="rounded-md border bg-popover p-1 shadow-md" sideOffset={6} align="start">
                         <div onWheel={onCalendarWheel} className="select-none">
                           <DayPicker
                             mode="single"
@@ -300,8 +300,15 @@ export default function ApplicationPage() {
                             captionLayout="dropdown"
                             fromYear={1980}
                             toYear={new Date().getFullYear()}
-                            numberOfMonths={2}
+                            numberOfMonths={1}
                             showOutsideDays
+                            styles={{
+                              root: { fontSize: "12px" },
+                              caption_label: { fontSize: "12px" },
+                              head_cell: { fontSize: "11px", padding: "2px" },
+                              day: { width: "30px", height: "30px", margin: "2px", padding: 0 },
+                              nav_button: { width: "28px", height: "28px" },
+                            }}
                           />
                         </div>
                       </Popover.Content>
