@@ -455,7 +455,7 @@ export default function ApplicationPage() {
                   <Textarea id="strengths" rows={5} value={form.strengths} onChange={(e) => update("strengths", e.target.value)} placeholder="Chia sẻ thật lòng nhé!" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Bạn làm tốt những việc nào? (có thể chọn nhiều đáp án)</Label>
+                  <Label>B��n làm tốt những việc nào? (có thể chọn nhiều đáp án)</Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {skillsMulti.map((s) => (
                       <label key={s} className="flex items-center gap-2 cursor-pointer">
@@ -635,8 +635,8 @@ export default function ApplicationPage() {
           </Card>
           <Card className="text-center p-6">
             <CardContent className="pt-6">
-              <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="h-6 w-6 text-accent" />
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="h-6 w-6 text-primary" />
               </div>
               <h3 className="font-heading font-semibold text-lg mb-2">Cơ hội phát triển</h3>
               <p className="text-muted-foreground text-sm">Workshop, talkshow, mentoring từ anh chị đi trước</p>
@@ -644,8 +644,8 @@ export default function ApplicationPage() {
           </Card>
           <Card className="text-center p-6">
             <CardContent className="pt-6">
-              <div className="w-12 h-12 bg-chart-3/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="h-6 w-6 text-chart-3" />
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="h-6 w-6 text-primary" />
               </div>
               <h3 className="font-heading font-semibold text-lg mb-2">Kết nối ngành</h3>
               <p className="text-muted-foreground text-sm">Tiếp cận doanh nghiệp và cơ hội thực tập trong lĩnh vực</p>
