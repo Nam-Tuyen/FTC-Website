@@ -332,19 +332,29 @@ export default function ApplicationPage() {
                         </div>
                       </Popover.Content>
                       <style jsx global>{`
+                        /* Force white for all SVG/icons in caption dropdowns and nav */
                         .rdp-root .rdp-caption_dropdowns svg,
-                        .rdp-root .rdp-caption_dropdowns polygon,
+                        .rdp-root .rdp-caption_dropdowns svg *,
                         .rdp-root .rdp-nav button svg,
-                        .rdp-root .rdp-nav button polygon {
+                        .rdp-root .rdp-nav button svg * {
                           fill: #fff !important;
                           stroke: #fff !important;
                         }
+                        /* Text color across caption, headers, days, and nav */
                         .rdp-root .rdp-caption_dropdowns select,
                         .rdp-root .rdp-caption_label,
                         .rdp-root .rdp-head_cell,
                         .rdp-root .rdp-day,
+                        .rdp-root .rdp-day_button,
                         .rdp-root .rdp-nav {
                           color: #fff !important;
+                        }
+                        /* Dropdown options and caret color */
+                        .rdp-root .rdp-caption_dropdowns select,
+                        .rdp-root .rdp-caption_dropdowns option {
+                          color: #fff !important;
+                          background: transparent;
+                          caret-color: #fff;
                         }
                       `}</style>
                     </Popover.Root>
