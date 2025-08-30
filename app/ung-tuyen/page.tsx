@@ -303,14 +303,30 @@ export default function ApplicationPage() {
                             numberOfMonths={1}
                             showOutsideDays
                             styles={{
+                              // Base
                               root: { fontSize: "12px", color: "#fff" },
+                              months: { color: "#fff" },
+                              table: { color: "#fff" },
+                              head: { color: "#fff" },
+                              // Header / caption
+                              caption: { color: "#fff" },
                               caption_label: { fontSize: "12px", color: "#fff" },
+                              caption_dropdowns: { color: "#fff", display: "flex", gap: 6 },
+                              caption_dropdown: { color: "#fff", background: "transparent", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 6, padding: "2px 6px" },
+                              caption_dropdown_month: { color: "#fff" },
+                              caption_dropdown_year: { color: "#fff" },
+                              // Week header
                               head_cell: { fontSize: "11px", padding: "4px 6px", color: "#fff" },
-                              day: { width: 28, height: 28, margin: 2, padding: 0, lineHeight: "28px", color: "#fff" },
-                              day_selected: { backgroundColor: "rgba(255,255,255,0.2)", color: "#fff" },
-                              day_today: { outline: "1px solid rgba(255,255,255,0.4)" },
+                              // Days
+                              day: { width: 28, height: 28, margin: 2, padding: 0, lineHeight: "28px", color: "#fff", borderRadius: 6 },
+                              day_selected: { backgroundColor: "rgba(255,255,255,0.22)", color: "#fff" },
+                              day_today: { outline: "1px solid rgba(255,255,255,0.45)", borderRadius: 6 },
                               day_outside: { color: "rgba(255,255,255,0.55)" },
+                              // Navigation
+                              nav: { color: "#fff" },
                               nav_button: { width: 28, height: 28, color: "#fff" },
+                              nav_button_previous: { color: "#fff" },
+                              nav_button_next: { color: "#fff" },
                             }}
                           />
                         </div>
