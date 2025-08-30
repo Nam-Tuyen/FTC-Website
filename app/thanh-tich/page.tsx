@@ -30,9 +30,9 @@ const achievements = [
   },
   {
     id: 3,
-    title: "500+ Thành viên Tích cực",
+    title: "100+ Thành viên Tích cực",
     description:
-      "Câu lạc bộ đã phát triển thành cộng đồng với hơn 500 thành viên tích cực từ các trường đại học và doanh nghiệp.",
+      "Câu lạc bộ đã phát triển thành cộng đồng với hơn 100 thành viên tích cực từ các trường đại học và doanh nghiệp.",
     date: "Tháng 12, 2023",
     category: "Cộng đồng",
     icon: Users,
@@ -52,14 +52,14 @@ const achievements = [
   },
   {
     id: 5,
-    title: "Giải Ba Cuộc thi AI trong Tài chính",
+    title: "Top 10 I-Star 2024",
     description:
-      "Đạt giải ba trong cuộc thi ứng dụng AI trong lĩnh vực tài chính với giải pháp phân tích rủi ro tín dụng thông minh.",
-    date: "Tháng 8, 2023",
+      "Đạt Top 10 Giải thưởng Đổi mới sáng tạo I-STAR 2024 – công nhận những đóng góp tích cực của FTC trong hệ sinh thái khởi nghiệp – đổi mới sáng tạo của TP.HCM.",
+    date: "Tháng 9, 2024",
     category: "Cuộc thi",
     icon: Star,
     image: "/ai-finance-competition-award-ceremony.png",
-    tags: ["AI", "Giải ba", "Tín dụng"],
+    tags: ["Đổi mới", "Top ", "Khởi nghiệp"],
   },
   {
     id: 6,
@@ -77,8 +77,8 @@ const achievements = [
 const stats = [
   { label: "Giải thưởng", value: "15+", icon: Trophy },
   { label: "Dự án hoàn thành", value: "25+", icon: Target },
-  { label: "Thành viên", value: "500+", icon: Users },
-  { label: "Đối tác", value: "30+", icon: Award },
+  { label: "Thành viên", value: "100+", icon: Users },
+  { label: "Đối tác", value: "25+", icon: Award },
 ]
 
 export default function AchievementsPage() {
