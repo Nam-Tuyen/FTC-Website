@@ -303,11 +303,14 @@ export default function ApplicationPage() {
                             numberOfMonths={1}
                             showOutsideDays
                             styles={{
-                              root: { fontSize: "12px" },
-                              caption_label: { fontSize: "12px" },
-                              head_cell: { fontSize: "11px", padding: "2px" },
-                              day: { width: "30px", height: "30px", margin: "2px", padding: 0 },
-                              nav_button: { width: "28px", height: "28px" },
+                              root: { fontSize: "12px", color: "#fff" },
+                              caption_label: { fontSize: "12px", color: "#fff" },
+                              head_cell: { fontSize: "11px", padding: "4px 6px", color: "#fff" },
+                              day: { width: 28, height: 28, margin: 2, padding: 0, lineHeight: "28px", color: "#fff" },
+                              day_selected: { backgroundColor: "rgba(255,255,255,0.2)", color: "#fff" },
+                              day_today: { outline: "1px solid rgba(255,255,255,0.4)" },
+                              day_outside: { color: "rgba(255,255,255,0.55)" },
+                              nav_button: { width: 28, height: 28, color: "#fff" },
                             }}
                           />
                         </div>
