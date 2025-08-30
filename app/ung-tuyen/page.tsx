@@ -234,7 +234,7 @@ export default function ApplicationPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!requiredValid) {
-      alert("Vui lòng điền đầy đủ các trường bắt buộc (*) và kiểm tra email trường (@…uel.edu.vn)")
+      alert("Vui lòng điền đ���y đủ các trường bắt buộc (*) và kiểm tra email trường (@…uel.edu.vn)")
       return
     }
     try {
@@ -284,7 +284,7 @@ export default function ApplicationPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Card>
           <CardHeader>
-            <CardTitle className="text-3xl text-center font-heading">M���u đơn ứng tuyển</CardTitle>
+            <CardTitle className="text-3xl text-center font-heading"><p>MẪU ĐƠN ỨNG TUYỂN</p></CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-10">
@@ -552,7 +552,7 @@ export default function ApplicationPage() {
                 <h2 className="text-xl font-semibold">5) Bạn muốn vào ban nào?</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label>Ban chính muốn ứng tuyển *</Label>
+                    <Label>Ban ch��nh muốn ứng tuyển *</Label>
                     <Select value={form.primaryTeam} onValueChange={(v) => update("primaryTeam", v)}>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Chọn 1 ban" />
