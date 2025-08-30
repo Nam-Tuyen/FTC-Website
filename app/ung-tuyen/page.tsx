@@ -379,7 +379,7 @@ export default function ApplicationPage() {
                     <Input id="studentId" value={form.studentId} onChange={(e) => update("studentId", e.target.value)} />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="classFacultyCourse">Lớp/Khoa/Khóa *</Label>
+                    <Label htmlFor="classFacultyCourse">Lớp*</Label>
                     <Input id="classFacultyCourse" value={form.classFacultyCourse} onChange={(e) => update("classFacultyCourse", e.target.value)} />
                   </div>
                 </div>
@@ -455,7 +455,7 @@ export default function ApplicationPage() {
                   <Textarea id="strengths" rows={5} value={form.strengths} onChange={(e) => update("strengths", e.target.value)} placeholder="Chia sẻ thật lòng nhé!" />
                 </div>
                 <div className="space-y-2">
-                  <Label>B��n làm tốt những việc nào? (có thể chọn nhiều đáp án)</Label>
+                  <Label>Bạn làm tốt những việc nào? (có thể chọn nhiều đáp án)</Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {skillsMulti.map((s) => (
                       <label key={s} className="flex items-center gap-2 cursor-pointer">
@@ -503,7 +503,7 @@ export default function ApplicationPage() {
                 <div className="space-y-2">
                   <Label>Theo bạn, điều gì quyết định làm việc nhóm hiệu quả?</Label>
                   <RadioGroup value={form.teamworkKey} onValueChange={(v) => update("teamworkKey", v)} className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    {["Kỷ luật","Giao tiếp","Cam kết","Tôn trọng","Trách nhiệm","Tập trung kết quả"].map((k) => (
+                    {["Kỷ luật","Giao ti��p","Cam kết","Tôn trọng","Trách nhiệm","Tập trung kết quả"].map((k) => (
                       <label key={k} className="flex items-center gap-2 cursor-pointer">
                         <RadioGroupItem id={`tw-${k}`} value={k} />
                         <span className="text-sm">{k}</span>
