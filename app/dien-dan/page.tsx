@@ -356,6 +356,7 @@ function AskQuestionCard({
   const [studentId, setStudentId] = useState('')
   const [category, setCategory] = useState<string>(CATEGORIES[0])
   const [error, setError] = useState('')
+  const [anonymous, setAnonymous] = useState(false)
 
   function validate() {
     if (!/^K\d{9}$/.test(studentId.trim())) {
