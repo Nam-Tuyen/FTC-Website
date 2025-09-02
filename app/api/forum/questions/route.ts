@@ -20,10 +20,12 @@ function formatDateSheetTitle(d = new Date()) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { studentId, name, title, content, category, questionId } = body || {}
+    const { anonymous, studentId, name, title, content, category, questionId } = body || {}
 
-    if (!studentId || !/^K\d{9}$/.test(studentId)) {
-      return NextResponse.json({ error: 'MSSV không hợp lệ (định dạng K#########)' }, { status: 400 })
+    if (!anonymous) {
+      if (!studentId || !/^K\d{9}$/.test(studentId)) {
+        return NextResponse.json({ error: 'MSSV không hợp lệ (định dạng K#########)' }, { status: 400 })
+      }
     }
     if (!title || !content) {
       return NextResponse.json({ error: 'Thiếu tiêu đề hoặc nội dung' }, { status: 400 })
