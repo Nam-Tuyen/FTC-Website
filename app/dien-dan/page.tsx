@@ -238,12 +238,12 @@ export default function ForumPage() {
             <section>
               <h2 className="font-heading font-bold text-2xl text-foreground mb-6">Câu hỏi gần đây</h2>
               <div className="space-y-4">
-                {filtered.map((q) => (
+                {pageItems.map((q) => (
                   <QuestionCard
                     key={q.id}
                     q={q}
                     onLike={() => handleToggleLike(q.id)}
-                    onReply={(content) => handleAddReply(q.id, content)}
+                    onReply={(content, opts) => handleAddReply(q.id, content, opts)}
                   />
                 ))}
                 {filtered.length === 0 && (
