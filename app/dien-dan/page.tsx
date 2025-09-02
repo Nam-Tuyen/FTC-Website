@@ -305,7 +305,7 @@ export default function ForumPage() {
                   }}
                   placeholder="Nhập tên của bạn"
                 />
-                <div className="text-xs text-muted-foreground">Tên này sẽ dùng để đăng câu hỏi và phản hồi.</div>
+                <div className="text-xs text-muted-foreground">Tên này sẽ dùng ��ể đăng câu hỏi và phản hồi.</div>
               </CardContent>
             </Card>
 
@@ -479,7 +479,7 @@ function QuestionCard({
               <span className="text-xs text-muted-foreground">{formatTime(q.createdAt)}</span>
             </div>
             <p className="text-sm text-muted-foreground mb-2 whitespace-pre-wrap">{q.content}</p>
-            <div className="text-xs text-muted-foreground mb-3">MSSV: {q.studentId}</div>
+            <div className="text-xs text-muted-foreground mb-3">{q.studentId ? `MSSV: ${q.studentId}` : 'Ẩn danh'}</div>
 
             <div className="flex items-center gap-3 text-sm">
               <button
