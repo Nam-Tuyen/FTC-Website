@@ -225,7 +225,7 @@ Hoặc thử hỏi về các chủ đề khác mà tôi có thể hỗ trợ!`
             <Bot className="h-8 w-8 text-primary-foreground" />
           </div>
           <h1 className="font-heading font-bold text-4xl sm:text-5xl text-foreground mb-6">
-            <span>AI CHATBOT</span>
+            AI <span className="text-primary">Chatbot</span>
           </h1>
           <p className="text-xl text-muted-foreground text-pretty">
             <em>Trợ lý AI thông minh giúp bạn tìm hiểu về câu lạc bộ và các kiến thức Fintech</em>
