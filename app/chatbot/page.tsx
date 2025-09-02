@@ -89,7 +89,7 @@ Câu lạc bộ có workshop về DeFi hàng tháng!`,
 
 🤝 **Ban Đối ngoại**
 - Tìm đối tác doanh nghiệp
-- Xây dựng mối quan hệ
+- X��y dựng mối quan hệ
 - Tìm cơ hội tài trợ
 
 Bạn quan tâm ban nào?`,
@@ -186,21 +186,46 @@ Hoặc thử hỏi về các chủ đề khác mà tôi có thể hỗ trợ!`
       timestamp: new Date(),
     }
 
+    const prompt = inputValue
     setMessages((prev) => [...prev, userMessage])
     setInputValue("")
     setIsTyping(true)
 
-    // Simulate bot typing delay
-    setTimeout(() => {
+    try {
+      const history = messages.map((m) => ({ role: m.sender === "bot" ? "model" : "user", content: m.content }))
+      const res = await fetch("/api/chat/gemini", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt, history }),
+      })
+
+      let text = ""
+      if (res.ok) {
+        const data = await res.json()
+        text = typeof data?.text === "string" && data.text.trim() ? data.text : ""
+      }
+      if (!text) {
+        text = getBotResponse(prompt)
+      }
+
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: getBotResponse(inputValue),
+        content: text,
         sender: "bot",
         timestamp: new Date(),
       }
       setMessages((prev) => [...prev, botMessage])
+    } catch (e) {
+      const botMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        content: "Xin lỗi, hiện không thể kết nối tới AI. Vui lòng thử lại sau.",
+        sender: "bot",
+        timestamp: new Date(),
+      }
+      setMessages((prev) => [...prev, botMessage])
+    } finally {
       setIsTyping(false)
-    }, 1500)
+    }
   }
 
   const handleSuggestedQuestion = (question: string) => {
