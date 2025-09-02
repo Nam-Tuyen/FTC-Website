@@ -359,9 +359,11 @@ function AskQuestionCard({
   const [anonymous, setAnonymous] = useState(false)
 
   function validate() {
-    if (!/^K\d{9}$/.test(studentId.trim())) {
-      setError('MSSV phải có dạng K#########')
-      return false
+    if (!anonymous) {
+      if (!/^K\d{9}$/.test(studentId.trim())) {
+        setError('MSSV phải có dạng K#########')
+        return false
+      }
     }
     if (!title.trim() || !content.trim()) {
       setError('Vui lòng nhập đầy đủ tiêu đề và nội dung')
