@@ -379,14 +379,20 @@ function AskQuestionCard({
         <CardTitle className="text-lg font-heading">Đặt câu hỏi</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <div className="md:col-span-1">
             <label className="text-sm text-muted-foreground">Tên của bạn</label>
             <Input value={currentUserName} onChange={(e) => onUpdateName(e.target.value)} placeholder="Tên hiển thị" />
           </div>
           <div className="md:col-span-1">
             <label className="text-sm text-muted-foreground">Mã số sinh viên</label>
-            <Input value={studentId} onChange={(e) => setStudentId(e.target.value)} placeholder="K224141650" />
+            <Input value={studentId} onChange={(e) => setStudentId(e.target.value)} placeholder="K224141650" disabled={anonymous} />
+          </div>
+          <div className="md:col-span-1 flex items-end">
+            <label className="flex items-center gap-2 text-sm text-muted-foreground">
+              <input type="checkbox" className="accent-accent" checked={anonymous} onChange={(e) => setAnonymous(e.target.checked)} />
+              Đăng ẩn danh
+            </label>
           </div>
           <div className="md:col-span-2">
             <label className="text-sm text-muted-foreground">Tiêu đề</label>
