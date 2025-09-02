@@ -7,18 +7,20 @@ export const dynamic = 'force-dynamic'
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { studentId, name, title, content, category, questionId, authorId } = body || {}
+    const { anonymous, studentId, name, title, content, category, questionId, authorId } = body || {}
 
-    if (!studentId || !/^K\d{9}$/.test(studentId)) return NextResponse.json({ error: 'MSSV không hợp lệ' }, { status: 400 })
+    if (!anonymous) {
+      if (!studentId || !/^K\d{9}$/.test(studentId)) return NextResponse.json({ error: 'MSSV không hợp lệ' }, { status: 400 })
+    }
     if (!title || !content) return NextResponse.json({ error: 'Thiếu tiêu đề hoặc nội dung' }, { status: 400 })
     if (!category) return NextResponse.json({ error: 'Thiếu chủ đề' }, { status: 400 })
 
     const pageId = await createNotionQuestion({
       title,
       content,
-      authorName: name || 'Ẩn danh',
+      authorName: anonymous ? 'Ẩn danh' : name || 'Ẩn danh',
       authorId: authorId || 'unknown',
-      studentId,
+      studentId: anonymous ? '' : studentId,
       category,
     })
 
