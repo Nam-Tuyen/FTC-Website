@@ -253,6 +253,41 @@ export default function ForumPage() {
                 )}
               </div>
             </section>
+
+            {filtered.length > PAGE_SIZE && (
+              <div className="mt-6 flex items-center justify-center gap-2">
+                <Button
+                  variant="outline"
+                  className="bg-transparent"
+                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                  disabled={currentPageClamped === 1}
+                >
+                  Trước
+                </Button>
+                {Array.from({ length: totalPages }).map((_, idx) => {
+                  const page = idx + 1
+                  const active = page === currentPageClamped
+                  return (
+                    <Button
+                      key={page}
+                      variant={active ? "default" : "outline"}
+                      className={active ? "" : "bg-transparent"}
+                      onClick={() => setCurrentPage(page)}
+                    >
+                      {page}
+                    </Button>
+                  )
+                })}
+                <Button
+                  variant="outline"
+                  className="bg-transparent"
+                  onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                  disabled={currentPageClamped === totalPages}
+                >
+                  Sau
+                </Button>
+              </div>
+            )}
           </div>
 
           <div className="space-y-6">
