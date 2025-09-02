@@ -173,7 +173,7 @@ Bạn có thể:
 💬 Tham gia diễn đàn để thảo luận
 📞 Gọi hotline: 0123-456-789
 
-Hoặc thử hỏi về các chủ đ��� khác mà tôi có thể hỗ trợ!`
+Hoặc thử hỏi về các chủ đề khác mà tôi có thể hỗ trợ!`
   }
 
   const handleSendMessage = async () => {
@@ -224,8 +224,8 @@ Hoặc thử hỏi về các chủ đ��� khác mà tôi có thể hỗ tr�
           <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
             <Bot className="h-8 w-8 text-primary-foreground" />
           </div>
-          <h1 className="font-heading font-black text-5xl sm:text-6xl text-foreground mb-6 text-glow">
-            <span className="bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent animate-pulse uppercase tracking-wide">AI CHATBOT</span>
+          <h1 className="font-heading font-bold text-4xl sm:text-5xl text-foreground mb-6">
+            AI <span className="bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent animate-pulse uppercase tracking-wide">CHATBOT</span>
           </h1>
           <p className="text-xl text-muted-foreground text-pretty">
             <em>Trợ lý AI thông minh giúp bạn tìm hiểu về câu lạc bộ và các kiến thức Fintech</em>
