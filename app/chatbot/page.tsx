@@ -27,7 +27,7 @@ const suggestedQuestions = [
   // Bổ sung thêm câu hỏi để tăng chiều dài khung
   "Thời gian sinh hoạt diễn ra vào khi nào?",
   "Chi phí tham gia là bao nhiêu?",
-  "Cần kỹ n��ng gì để ứng tuyển?",
+  "Cần kỹ năng gì để ứng tuyển?",
   "Có cần kinh nghiệm trước không?",
   "Câu lạc bộ có hỗ trợ dự án cá nhân không?",
   "Làm sao liên hệ Ban Chủ nhiệm?",
@@ -225,7 +225,7 @@ Hoặc thử hỏi về các chủ đề khác mà tôi có thể hỗ trợ!`
             <Bot className="h-8 w-8 text-primary-foreground" />
           </div>
           <h1 className="font-heading font-bold text-4xl sm:text-5xl text-foreground mb-6">
-            <p>AI CHATBOT</p>
+            <span>AI CHATBOT</span>
           </h1>
           <p className="text-xl text-muted-foreground text-pretty">
             <em>Trợ lý AI thông minh giúp bạn tìm hiểu về câu lạc bộ và các kiến thức Fintech</em>
