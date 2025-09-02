@@ -95,9 +95,9 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         <div
-          className={`md:hidden transition-all duration-300 overflow-hidden ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+          className={`md:hidden transition-all duration-300 overflow-hidden ${isOpen ? "max-h-[70vh] opacity-100" : "max-h-0 opacity-0"}`}
         >
-          <div className="px-2 pt-4 pb-6 space-y-2 bg-card/50 backdrop-blur-md rounded-xl mt-4 border border-accent/20 glow">
+          <div className="px-2 pt-4 pb-6 space-y-2 bg-card/50 backdrop-blur-md rounded-xl mt-4 border border-accent/20 glow overflow-y-auto overscroll-contain max-h-[60vh] pr-1">
             {navigationItems.map((item) => {
               const IconComponent = item.icon
               return (
