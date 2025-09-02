@@ -4,11 +4,15 @@ import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
 import { Navigation } from "@/components/navigation"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Send, Bot, User, Sparkles, MessageSquare, HelpCircle, Zap } from "lucide-react"
+import { Card, CardHeader, CardTitle } from "@/components/ui/card"
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
+import { Bot, Sparkles, MessageSquare, HelpCircle, Zap } from "lucide-react"
+import { ChatHeader } from "./components/ChatHeader"
+import { ChatMessages } from "./components/ChatMessages"
+import { ChatInput } from "./components/ChatInput"
+import { SuggestedQuestions } from "./components/SuggestedQuestions"
+import type { Message } from "./types"
+import { chatWithGemini } from "./services/gemini"
 
 interface Message {
   id: string
@@ -89,7 +93,7 @@ Câu lạc bộ có workshop về DeFi hàng tháng!`,
 
 🤝 **Ban Đối ngoại**
 - Tìm đối tác doanh nghiệp
-- X��y dựng mối quan hệ
+- Xây dựng mối quan hệ
 - Tìm cơ hội tài trợ
 
 Bạn quan tâm ban nào?`,
@@ -111,7 +115,7 @@ Bạn quan tâm ban nào?`,
 
 Tham gia workshop Blockchain của chúng tôi để hiểu sâu hơn!`,
 
-  default: `Xin chào! Tôi là AI Assistant của Câu lạc bộ Công nghệ Tài chính. 
+  default: `Xin chào! Tôi là AI Assistant của Câu lạc b�� Công nghệ Tài chính. 
 
 Tôi có thể giúp bạn:
 🤖 Trả lời câu hỏi về câu lạc bộ
