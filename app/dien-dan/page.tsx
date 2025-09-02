@@ -139,8 +139,9 @@ export default function ForumPage() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            studentId: data.studentId,
-            name: currentUserName || '',
+            anonymous: isAnon,
+            studentId: isAnon ? '' : data.studentId,
+            name: isAnon ? 'Ẩn danh' : currentUserName || '',
             title: data.title,
             content: data.content,
             category: data.category,
@@ -151,8 +152,9 @@ export default function ForumPage() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            studentId: data.studentId,
-            name: currentUserName || '',
+            anonymous: isAnon,
+            studentId: isAnon ? '' : data.studentId,
+            name: isAnon ? 'Ẩn danh' : currentUserName || '',
             title: data.title,
             content: data.content,
             category: data.category,
