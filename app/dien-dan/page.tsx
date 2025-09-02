@@ -53,7 +53,7 @@ function formatTime(ts: number) {
   const diff = Math.floor((Date.now() - ts) / 1000)
   if (diff < 60) return `${diff}s trước`
   if (diff < 3600) return `${Math.floor(diff / 60)}m trước`
-  if (diff < 86400) return `${Math.floor(diff / 3600)}h trư��c`
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h trước`
   return new Date(ts).toLocaleString()
 }
 
@@ -215,7 +215,7 @@ export default function ForumPage() {
               <Input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Tìm kiếm câu hỏi, nội dung..."
+                placeholder="Tìm câu hỏi..."
                 className="pl-10"
               />
             </div>
@@ -406,7 +406,7 @@ function AskQuestionCard({
             <Textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder="Mô tả chi tiết vấn đề, bối cảnh, bạn đã thử gì..."
+              placeholder="Mô tả chi tiết v��n đề, bối cảnh, bạn đã thử gì..."
             />
           </div>
           <div className="md:col-span-1">
