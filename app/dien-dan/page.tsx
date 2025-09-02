@@ -53,7 +53,7 @@ function formatTime(ts: number) {
   const diff = Math.floor((Date.now() - ts) / 1000)
   if (diff < 60) return `${diff}s trước`
   if (diff < 3600) return `${Math.floor(diff / 60)}m trước`
-  if (diff < 86400) return `${Math.floor(diff / 3600)}h trước`
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h trư��c`
   return new Date(ts).toLocaleString()
 }
 
@@ -305,7 +305,7 @@ export default function ForumPage() {
                   }}
                   placeholder="Nhập tên của bạn"
                 />
-                <div className="text-xs text-muted-foreground">Tên này sẽ dùng ��ể đăng câu hỏi và phản hồi.</div>
+                <div className="text-xs text-muted-foreground">Tên này sẽ dùng để đăng câu hỏi và phản hồi.</div>
               </CardContent>
             </Card>
 
@@ -507,7 +507,7 @@ function QuestionCard({
             </div>
 
             <div className="mt-4">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
                 <div className="md:col-span-3">
                   <Textarea
                     value={reply}
@@ -515,14 +515,36 @@ function QuestionCard({
                     placeholder="Viết phản hồi của bạn"
                   />
                 </div>
+                <div className="md:col-span-1">
+                  <Input
+                    value={replyStudentId}
+                    onChange={(e) => setReplyStudentId(e.target.value)}
+                    placeholder="MSSV (tùy chọn)"
+                    disabled={replyAnonymous}
+                  />
+                  <label className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
+                    <input
+                      type="checkbox"
+                      className="accent-accent"
+                      checked={replyAnonymous}
+                      onChange={(e) => setReplyAnonymous(e.target.checked)}
+                    />
+                    Ẩn danh
+                  </label>
+                </div>
                 <div className="md:col-span-1 flex md:block">
                   <Button
                     className="md:w-full ml-auto"
                     onClick={() => {
                       const c = reply.trim()
                       if (!c) return
-                      onReply(c)
+                      if (!replyAnonymous && replyStudentId && !/^K\d{9}$/.test(replyStudentId.trim())) {
+                        return
+                      }
+                      onReply(c, { anonymous: replyAnonymous, studentId: replyStudentId.trim() || undefined })
                       setReply('')
+                      setReplyStudentId('')
+                      setReplyAnonymous(false)
                     }}
                   >
                     Gửi phản hồi
