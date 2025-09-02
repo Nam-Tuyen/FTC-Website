@@ -202,10 +202,10 @@ export default function ForumPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="font-heading font-bold text-4xl sm:text-5xl text-foreground mb-6">
-              Diễn đàn <span className="text-primary">Thảo luận</span>
+              <span className="bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent animate-pulse uppercase tracking-wide">DIỄN ĐÀN THẢO LUẬN</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Nơi cộng đồng fintech chia sẻ kiến thức, thảo luận xu hướng và kết nối với nhau
+              <em>Nơi cộng đồng fintech chia sẻ kiến thức, thảo luận xu hướng và kết nối với nhau</em>
             </p>
           </div>
 
@@ -226,14 +226,7 @@ export default function ForumPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-3 space-y-8">
-            <AskQuestionCard
-              currentUserName={currentUserName}
-              onUpdateName={(name) => {
-                setCurrentUserName(name)
-                localStorage.setItem(STORAGE_KEYS.userName, name)
-              }}
-              onSubmit={handleCreateQuestion}
-            />
+            <AskQuestionCard onSubmit={handleCreateQuestion} />
 
             <section>
               <h2 className="font-heading font-bold text-2xl text-foreground mb-6">Câu hỏi gần đây</h2>
@@ -296,16 +289,28 @@ export default function ForumPage() {
                 <CardTitle className="text-lg font-heading">Hồ sơ của bạn</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="text-sm text-muted-foreground">Tên hiển thị</div>
+                <div className="text-sm text-muted-foreground">Mã số sinh viên</div>
                 <Input
-                  value={currentUserName}
+                  value={profileStudentId}
                   onChange={(e) => {
-                    setCurrentUserName(e.target.value)
-                    localStorage.setItem(STORAGE_KEYS.userName, e.target.value)
+                    setProfileStudentId(e.target.value)
+                    localStorage.setItem(STORAGE_KEYS.studentId, e.target.value)
                   }}
-                  placeholder="Nhập tên của bạn"
+                  placeholder="K#########"
+                  disabled={profileAnonymous}
                 />
-                <div className="text-xs text-muted-foreground">Tên này sẽ dùng để đăng câu hỏi và phản hồi.</div>
+                <label className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <input
+                    type="checkbox"
+                    className="accent-accent"
+                    checked={profileAnonymous}
+                    onChange={(e) => {
+                      setProfileAnonymous(e.target.checked)
+                      localStorage.setItem(STORAGE_KEYS.anonymous, e.target.checked ? '1' : '0')
+                    }}
+                  />
+                  Ẩn danh
+                </label>
               </CardContent>
             </Card>
 
@@ -343,12 +348,8 @@ export default function ForumPage() {
 }
 
 function AskQuestionCard({
-  currentUserName,
-  onUpdateName,
   onSubmit,
 }: {
-  currentUserName: string
-  onUpdateName: (name: string) => void
   onSubmit: (data: { title: string; content: string; studentId: string; category: string; anonymous?: boolean }) => void
 }) {
   const [title, setTitle] = useState('')
@@ -357,6 +358,13 @@ function AskQuestionCard({
   const [category, setCategory] = useState<string>(CATEGORIES[0])
   const [error, setError] = useState('')
   const [anonymous, setAnonymous] = useState(false)
+
+  useEffect(() => {
+    const savedSid = localStorage.getItem(STORAGE_KEYS.studentId) || ''
+    const savedAnon = localStorage.getItem(STORAGE_KEYS.anonymous) === '1'
+    setStudentId(savedSid)
+    setAnonymous(savedAnon)
+  }, [])
 
   function validate() {
     if (!anonymous) {
@@ -379,14 +387,10 @@ function AskQuestionCard({
         <CardTitle className="text-lg font-heading">Đặt câu hỏi</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="md:col-span-1">
-            <label className="text-sm text-muted-foreground">Tên của bạn</label>
-            <Input value={currentUserName} onChange={(e) => onUpdateName(e.target.value)} placeholder="Tên hiển thị" />
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="md:col-span-1">
             <label className="text-sm text-muted-foreground">Mã số sinh viên</label>
-            <Input value={studentId} onChange={(e) => setStudentId(e.target.value)} placeholder="K224141650" disabled={anonymous} />
+            <Input value={studentId} onChange={(e) => setStudentId(e.target.value)} placeholder="K#########" disabled={anonymous} />
           </div>
           <div className="md:col-span-1 flex items-end">
             <label className="flex items-center gap-2 text-sm text-muted-foreground">
