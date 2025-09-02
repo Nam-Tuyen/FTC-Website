@@ -114,6 +114,7 @@ export default function ForumPage() {
     content: string
     studentId: string
     category: string
+    anonymous?: boolean
   }) {
     const newId = uuid()
     const newQ: QuestionItem = {
