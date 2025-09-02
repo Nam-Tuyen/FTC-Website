@@ -36,6 +36,8 @@ const STORAGE_KEYS = {
   userId: 'forum.currentUserId',
   userName: 'forum.currentUserName',
   questions: 'forum.questions',
+  studentId: 'forum.studentId',
+  anonymous: 'forum.anonymous',
 }
 
 const CATEGORIES = [
@@ -59,19 +61,25 @@ function formatTime(ts: number) {
 
 export default function ForumPage() {
   const [currentUserId, setCurrentUserId] = useState<string>('')
-  const [currentUserName, setCurrentUserName] = useState<string>('Nam Tuyen Le')
+  const [currentUserName, setCurrentUserName] = useState<string>('')
   const [questions, setQuestions] = useState<QuestionItem[]>([])
   const [search, setSearch] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const PAGE_SIZE = 10
+  const [profileStudentId, setProfileStudentId] = useState('')
+  const [profileAnonymous, setProfileAnonymous] = useState(false)
 
   useEffect(() => {
     const id = localStorage.getItem(STORAGE_KEYS.userId) || uuid()
-    const name = localStorage.getItem(STORAGE_KEYS.userName) || 'Nam Tuyen Le'
+    const name = localStorage.getItem(STORAGE_KEYS.userName) || ''
     setCurrentUserId(id)
     setCurrentUserName(name)
     localStorage.setItem(STORAGE_KEYS.userId, id)
     localStorage.setItem(STORAGE_KEYS.userName, name)
+    const savedSid = localStorage.getItem(STORAGE_KEYS.studentId) || ''
+    const savedAnon = localStorage.getItem(STORAGE_KEYS.anonymous) === '1'
+    setProfileStudentId(savedSid)
+    setProfileAnonymous(savedAnon)
 
     const saved = localStorage.getItem(STORAGE_KEYS.questions)
     if (saved) {
@@ -366,6 +374,13 @@ function AskQuestionCard({
     setAnonymous(savedAnon)
   }, [])
 
+  useEffect(() => {
+    const savedSid = localStorage.getItem(STORAGE_KEYS.studentId) || ''
+    const savedAnon = localStorage.getItem(STORAGE_KEYS.anonymous) === '1'
+    setStudentId(savedSid)
+    setAnonymous(savedAnon)
+  }, [])
+
   function validate() {
     if (!anonymous) {
       if (!/^K\d{9}$/.test(studentId.trim())) {
@@ -410,7 +425,7 @@ function AskQuestionCard({
             <Textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder="Mô tả chi tiết v��n đề, bối cảnh, bạn đã thử gì..."
+              placeholder="Mô tả chi tiết vấn đề, bối cảnh, bạn đã thử gì..."
             />
           </div>
           <div className="md:col-span-1">
