@@ -349,7 +349,7 @@ function AskQuestionCard({
 }: {
   currentUserName: string
   onUpdateName: (name: string) => void
-  onSubmit: (data: { title: string; content: string; studentId: string; category: string }) => void
+  onSubmit: (data: { title: string; content: string; studentId: string; category: string; anonymous?: boolean }) => void
 }) {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
