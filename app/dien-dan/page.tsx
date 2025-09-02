@@ -177,12 +177,17 @@ export default function ForumPage() {
     )
   }
 
-  function handleAddReply(qid: string, content: string) {
+  function handleAddReply(
+    qid: string,
+    content: string,
+    opts?: { anonymous?: boolean; studentId?: string }
+  ) {
     if (!content.trim()) return
+    const isAnon = !!opts?.anonymous
     const reply: ReplyItem = {
       id: uuid(),
       authorId: currentUserId,
-      authorName: currentUserName || 'Ẩn danh',
+      authorName: isAnon ? 'Ẩn danh' : opts?.studentId ? `MSSV: ${opts.studentId}` : currentUserName || 'Ẩn danh',
       content,
       createdAt: Date.now(),
     }
