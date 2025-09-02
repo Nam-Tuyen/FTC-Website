@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { Montserrat } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
-import { FloatingChatbot } from "@/components/floating-chatbot"
 import "./globals.css"
 
 const montserrat = Montserrat({
@@ -28,7 +27,6 @@ export default function RootLayout({
     <html lang="vi">
       <body className={`${montserrat.className} ${montserrat.variable}`}>
         <Suspense fallback={null}>{children}</Suspense>
-        <FloatingChatbot />
         <Analytics />
       </body>
     </html>
