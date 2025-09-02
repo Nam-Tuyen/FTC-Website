@@ -434,11 +434,12 @@ function AskQuestionCard({
           <Button
             onClick={() => {
               if (!validate()) return
-              onSubmit({ title: title.trim(), content: content.trim(), studentId: studentId.trim(), category })
+              onSubmit({ title: title.trim(), content: content.trim(), studentId: studentId.trim(), category, anonymous })
               setTitle('')
               setContent('')
               setStudentId('')
               setCategory(CATEGORIES[0])
+              setAnonymous(false)
             }}
           >
             <Plus className="h-4 w-4 mr-2" />
