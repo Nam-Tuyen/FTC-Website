@@ -458,9 +458,11 @@ function QuestionCard({
 }: {
   q: QuestionItem
   onLike: () => void
-  onReply: (content: string) => void
+  onReply: (content: string, opts?: { anonymous?: boolean; studentId?: string }) => void
 }) {
   const [reply, setReply] = useState('')
+  const [replyAnonymous, setReplyAnonymous] = useState(false)
+  const [replyStudentId, setReplyStudentId] = useState('')
 
   return (
     <Card>
