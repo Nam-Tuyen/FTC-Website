@@ -117,13 +117,14 @@ export default function ForumPage() {
     anonymous?: boolean
   }) {
     const newId = uuid()
+    const isAnon = !!data.anonymous
     const newQ: QuestionItem = {
       id: newId,
       title: data.title,
       content: data.content,
       authorId: currentUserId,
-      authorName: currentUserName || 'Ẩn danh',
-      studentId: data.studentId,
+      authorName: isAnon ? 'Ẩn danh' : currentUserName || 'Ẩn danh',
+      studentId: isAnon ? 'Ẩn danh' : data.studentId,
       category: data.category,
       createdAt: Date.now(),
       likes: [],
