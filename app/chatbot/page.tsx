@@ -14,12 +14,6 @@ import { SuggestedQuestions } from "./components/SuggestedQuestions"
 import type { Message } from "./types"
 import { chatWithGemini } from "./services/gemini"
 
-interface Message {
-  id: string
-  content: string
-  sender: "user" | "bot"
-  timestamp: Date
-}
 
 const suggestedQuestions = [
   "Câu lạc bộ có những hoạt ��ộng gì?",
@@ -115,7 +109,7 @@ Bạn quan tâm ban nào?`,
 
 Tham gia workshop Blockchain của chúng tôi để hiểu sâu hơn!`,
 
-  default: `Xin chào! Tôi là AI Assistant của Câu lạc b�� Công nghệ Tài chính. 
+  default: `Xin chào! Tôi là AI Assistant của Câu lạc bộ Công nghệ Tài chính. 
 
 Tôi có thể giúp bạn:
 🤖 Trả lời câu hỏi về câu lạc bộ
@@ -167,7 +161,7 @@ export default function ChatbotPage() {
     }
 
     if (lowerMessage.includes("c��m ơn")) {
-      return "Rất vui được giúp đỡ bạn! Nếu có thêm câu hỏi nào khác, đừng ngần ngại hỏi nhé! 😊"
+      return "Rất vui được giúp đỡ bạn! Nếu có thêm câu h���i nào khác, đừng ngần ngại hỏi nhé! 😊"
     }
 
     return `Tôi hiểu bạn đang hỏi về "${userMessage}". Hiện tại t��i chưa có thông tin chi tiết về vấn đề này. 
@@ -197,20 +191,8 @@ Hoặc thử hỏi về các chủ đề khác mà tôi có thể hỗ trợ!`
 
     try {
       const history = messages.map((m) => ({ role: m.sender === "bot" ? "model" : "user", content: m.content }))
-      const res = await fetch("/api/chat/gemini", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt, history }),
-      })
-
-      let text = ""
-      if (res.ok) {
-        const data = await res.json()
-        text = typeof data?.text === "string" && data.text.trim() ? data.text : ""
-      }
-      if (!text) {
-        text = getBotResponse(prompt)
-      }
+      let text = await chatWithGemini(prompt, history)
+      if (!text) text = getBotResponse(prompt)
 
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -248,19 +230,7 @@ Hoặc thử hỏi về các chủ đề khác mà tôi có thể hỗ trợ!`
       <Navigation />
 
       {/* Hero Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
-            <Bot className="h-8 w-8 text-primary-foreground" />
-          </div>
-          <h1 className="font-heading font-bold text-4xl sm:text-5xl text-foreground mb-6">
-            <span className="bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent animate-pulse uppercase tracking-wide">AI CHATBOT</span>
-          </h1>
-          <p className="text-xl text-muted-foreground text-pretty">
-            <em>Trợ lý AI thông minh giúp bạn tìm hiểu về câu lạc bộ và các kiến thức Fintech</em>
-          </p>
-        </div>
-      </section>
+      <ChatHeader />
 
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 overflow-x-auto">
         <div className="min-w-[1200px] grid grid-cols-[1fr_minmax(720px,800px)_360px_1fr] grid-rows-[auto_auto] gap-8">
@@ -283,105 +253,16 @@ Hoặc thử hỏi về các chủ đề khác mà tôi có thể hỗ trợ!`
               </CardHeader>
 
               {/* Messages */}
-              <CardContent className="flex-1 overflow-y-auto p-4 space-y-4">
-                {messages.map((message) => (
-                  <div
-                    key={message.id}
-                    className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
-                  >
-                    <div className={`flex items-start space-x-2 max-w-[80%]`}>
-                      {message.sender === "bot" && (
-                        <Avatar className="w-8 h-8">
-                          <AvatarFallback className="bg-primary text-primary-foreground">
-                            <Bot className="h-4 w-4" />
-                          </AvatarFallback>
-                        </Avatar>
-                      )}
-                      <div
-                        className={`rounded-2xl px-4 py-3 overflow-hidden break-words ${
-                          message.sender === "user" ? "bg-primary text-primary-foreground glow" : "bg-secondary/20 text-foreground border border-accent/20"
-                        }`}
-                      >
-                        <p className="text-sm whitespace-pre-wrap break-words">{message.content}</p>
-                        <p className="text-xs opacity-70 mt-1">
-                          {hasMounted ? message.timestamp.toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }) : ""}
-                        </p>
-                      </div>
-                      {message.sender === "user" && (
-                        <Avatar className="w-8 h-8">
-                          <AvatarFallback className="bg-accent text-accent-foreground">
-                            <User className="h-4 w-4" />
-                          </AvatarFallback>
-                        </Avatar>
-                      )}
-                    </div>
-                  </div>
-                ))}
-
-                {isTyping && (
-                  <div className="flex justify-start">
-                    <div className="flex items-start space-x-2">
-                      <Avatar className="w-8 h-8">
-                        <AvatarFallback className="bg-primary text-primary-foreground">
-                          <Bot className="h-4 w-4" />
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="bg-muted rounded-lg px-4 py-2">
-                        <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce"></div>
-                          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-100"></div>
-                          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce delay-200"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                <div ref={messagesEndRef} />
-              </CardContent>
+              <ChatMessages messages={messages} isTyping={isTyping} endRef={messagesEndRef} hasMounted={hasMounted} />
 
               {/* Input */}
-              <div className="border-t border-accent/20 p-4 bg-card/10 backdrop-blur-sm">
-                <div className="flex space-x-2">
-                  <Input
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    placeholder="Nhập câu hỏi của bạn..."
-                    className="flex-1"
-                  />
-                  <Button onClick={handleSendMessage} disabled={!inputValue.trim()} className="glow">
-                    <Send className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
+              <ChatInput value={inputValue} onChange={setInputValue} onSend={handleSendMessage} onKeyPress={handleKeyPress} />
             </Card>
           </div>
 
           {/* Sidebar */}
           <div className="col-start-3 col-span-1">
-            {/* Suggested Questions */}
-            <Card className="flex flex-col bg-card/20 backdrop-blur-sm border-accent/20 ring-1 ring-accent/10 hover:border-accent/40 transition-all duration-500 hover:glow">
-              <CardHeader>
-                <CardTitle className="text-lg font-heading flex items-center">
-                  <HelpCircle className="h-5 w-5 mr-2" />
-                  Câu hỏi gợi ý
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 flex-1 overflow-y-auto">
-                {suggestedQuestions.map((question, index) => (
-                  <Button
-                    key={index}
-                    variant="outline"
-                    className="w-full text-left justify-start h-auto p-3 bg-transparent whitespace-normal break-words"
-                    onClick={() => handleSuggestedQuestion(question)}
-                  >
-                    <MessageSquare className="h-4 w-4 mr-2 flex-shrink-0" />
-                    <span className="text-sm break-words">{question}</span>
-                  </Button>
-                ))}
-              </CardContent>
-            </Card>
-
+            <SuggestedQuestions questions={suggestedQuestions} onPick={handleSuggestedQuestion} />
           </div>
 
           <div className="col-start-3 col-span-1 row-start-2">
