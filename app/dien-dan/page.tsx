@@ -62,6 +62,8 @@ export default function ForumPage() {
   const [currentUserName, setCurrentUserName] = useState<string>('Nam Tuyen Le')
   const [questions, setQuestions] = useState<QuestionItem[]>([])
   const [search, setSearch] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const PAGE_SIZE = 10
 
   useEffect(() => {
     const id = localStorage.getItem(STORAGE_KEYS.userId) || uuid()
@@ -179,7 +181,7 @@ export default function ForumPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="font-heading font-bold text-4xl sm:text-5xl text-foreground mb-6">
-              Diễn đàn <span className="text-primary">Thảo luận</span>
+              Diễn đàn <span className="text-primary">Thảo lu��n</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
               Nơi cộng đồng fintech chia sẻ kiến thức, thảo luận xu hướng và kết nối với nhau
