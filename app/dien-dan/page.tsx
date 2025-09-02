@@ -89,13 +89,25 @@ export default function ForumPage() {
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase()
-    if (!q) return questions
-    return questions.filter((item) =>
-      [item.title, item.content, item.authorName, item.studentId, item.category].some((f) =>
-        f.toLowerCase().includes(q)
-      )
-    )
+    const list = q
+      ? questions.filter((item) =>
+          [item.title, item.content, item.authorName, item.studentId, item.category].some((f) =>
+            f.toLowerCase().includes(q)
+          )
+        )
+      : questions
+    return [...list].sort((a, b) => {
+      if (b.likes.length !== a.likes.length) return b.likes.length - a.likes.length
+      return b.createdAt - a.createdAt
+    })
   }, [questions, search])
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
+  const currentPageClamped = Math.min(Math.max(1, currentPage), totalPages)
+  const pageItems = useMemo(() => {
+    const start = (currentPageClamped - 1) * PAGE_SIZE
+    return filtered.slice(start, start + PAGE_SIZE)
+  }, [filtered, currentPageClamped])
 
   async function handleCreateQuestion(data: {
     title: string
@@ -181,7 +193,7 @@ export default function ForumPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="font-heading font-bold text-4xl sm:text-5xl text-foreground mb-6">
-              Diễn đàn <span className="text-primary">Thảo lu��n</span>
+              Diễn đàn <span className="text-primary">Thảo luận</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
               Nơi cộng đồng fintech chia sẻ kiến thức, thảo luận xu hướng và kết nối với nhau
