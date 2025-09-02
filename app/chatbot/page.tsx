@@ -18,7 +18,7 @@ interface Message {
 }
 
 const suggestedQuestions = [
-  "Câu lạc bộ có những hoạt động gì?",
+  "Câu lạc bộ có những hoạt ��ộng gì?",
   "Làm thế nào để tham gia câu lạc bộ?",
   "DeFi là gì và tại sao nó quan trọng?",
   "Các ban trong câu lạc bộ làm gì?",
@@ -162,7 +162,7 @@ export default function ChatbotPage() {
       return "Xin chào! Tôi là AI Assistant của Câu lạc bộ Công nghệ Tài chính. Tôi có thể giúp gì cho bạn?"
     }
 
-    if (lowerMessage.includes("cảm ơn")) {
+    if (lowerMessage.includes("c��m ơn")) {
       return "Rất vui được giúp đỡ bạn! Nếu có thêm câu hỏi nào khác, đừng ngần ngại hỏi nhé! 😊"
     }
 
@@ -225,7 +225,7 @@ Hoặc thử hỏi về các chủ đề khác mà tôi có thể hỗ trợ!`
             <Bot className="h-8 w-8 text-primary-foreground" />
           </div>
           <h1 className="font-heading font-bold text-4xl sm:text-5xl text-foreground mb-6">
-            AI <span className="bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent animate-pulse uppercase tracking-wide">CHATBOT</span>
+            <span className="bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent animate-pulse uppercase tracking-wide">AI CHATBOT</span>
           </h1>
           <p className="text-xl text-muted-foreground text-pretty">
             <em>Trợ lý AI thông minh giúp bạn tìm hiểu về câu lạc bộ và các kiến thức Fintech</em>

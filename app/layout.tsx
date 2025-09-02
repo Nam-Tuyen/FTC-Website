@@ -4,6 +4,7 @@ import { Montserrat } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
+import { FloatingChatbotGate } from "@/components/floating-chatbot-gate"
 
 const montserrat = Montserrat({
   subsets: ["latin", "vietnamese"],
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang="vi">
       <body className={`${montserrat.className} ${montserrat.variable}`}>
         <Suspense fallback={null}>{children}</Suspense>
+        <FloatingChatbotGate />
         <Analytics />
       </body>
     </html>
