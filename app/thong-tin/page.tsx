@@ -59,7 +59,7 @@ export default function ThongTinPage() {
             </div>
             <div className="space-y-4 text-foreground/90 leading-relaxed">
               <p>
-                Câu lạc bộ Công nghệ và Tài chính FTC trực thuộc Khoa Tài chính và Ngân hàng, Trường Đại học Kinh tế và Luật, Đại học Quốc gia Thành phố Hồ Chí Minh, được thành lập vào tháng mười một năm 2020 dưới sự hướng dẫn của ThS. NCS Phan Huy Tâm, Giảng viên Khoa Tài chính - Ngân hàng, Chủ nhiệm câu lạc bộ, cùng đội ngũ sinh viên yêu thích lĩnh vực công nghệ tài chính. UEL là một trong tám đơn vị thành viên của Đại h���c Quốc gia Thành phố Hồ Chí Minh, là trung tâm đào tạo và nghiên cứu đa ngành, đa lĩnh vực, có uy tín hàng đầu phía Nam trong các khối Kinh tế, Luật, Quản lý công.
+                Câu lạc bộ Công nghệ và Tài chính FTC trực thuộc Khoa Tài chính và Ngân hàng, Trường Đại học Kinh tế và Luật, Đại học Quốc gia Thành phố Hồ Chí Minh, được thành lập vào tháng mười một năm 2020 dưới sự hướng dẫn của ThS. NCS Phan Huy Tâm, Giảng viên Khoa Tài chính - Ngân hàng, Chủ nhiệm câu lạc bộ, cùng đội ngũ sinh viên yêu thích lĩnh vực công nghệ tài chính. UEL là một trong tám đơn vị thành viên của Đại học Quốc gia Thành phố Hồ Chí Minh, là trung tâm đào tạo và nghiên cứu đa ngành, đa lĩnh vực, có uy tín hàng đầu phía Nam trong các khối Kinh tế, Luật, Quản lý công.
               </p>
             </div>
           </CardContent>
